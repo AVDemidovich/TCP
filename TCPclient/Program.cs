@@ -7,7 +7,7 @@ namespace TCPclient
     public class Program
     {
         private const int portNum = 13;
-        private const string hostName = "host.contoso.com";
+        private const string hostName = "WOOFWOOF";
 
         public static int Main(String[] args)
         {
