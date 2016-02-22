@@ -192,7 +192,8 @@ namespace TCPserver
         // Запуск сервера
         public Server(int Port)
         {
-            Listener = new TcpListener(IPAddress.Any, Port); // Создаем "слушателя" для указанного порта
+            IPAddress ipaddress = IPAddress.Parse("192.168.0.103");
+            Listener = new TcpListener(ipaddress, Port); // Создаем "слушателя" для указанного порта
             Listener.Start(); // Запускаем его
 
             // В бесконечном цикле
@@ -239,7 +240,7 @@ namespace TCPserver
             ThreadPool.SetMaxThreads(MaxThreadsCount, MaxThreadsCount);
             // Установим минимальное количество рабочих потоков
             ThreadPool.SetMinThreads(2, 2);
-            // Создадим новый сервер на порту 80
+
             new Server(9050);
         }
     }
