@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace TCPclient
 {
@@ -18,7 +19,7 @@ namespace TCPclient
                 NetworkStream ns = client.GetStream();
 
                 byte[] bytes = new byte[1024];
-                byte[] byteMessage = Encoding.ASCII.GetBytes("hi motherfucker");
+                byte[] byteMessage = Encoding.ASCII.GetBytes("hi . motherfucker!");
                 ns.Write(byteMessage, 0, byteMessage.Length);
 
                 int bytesRead = ns.Read(bytes, 0, bytes.Length);
@@ -31,7 +32,7 @@ namespace TCPclient
             {
                 Console.WriteLine(e.ToString());
             }
-
+            Thread.Sleep(7000);
             return 0;
         }
     }
