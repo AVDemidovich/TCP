@@ -55,6 +55,18 @@ namespace TCPserver
                 }
             }
 
+
+            //string Request = "этот текст написан для         консольного приложения, с лишними пробелами,  запятыми. не  судить строго";
+            //Request = Request.Trim(new char[] { ',', '.' }); //удаление точен и запятых            while (Request.Contains("  ")) //пока есть двойные пробелы
+            Request = Request.Replace(".", " ");
+            Request = Request.Replace("  ", " ");
+
+
+            string[] textArray = Request.Split(new char[] { ' ' }); //разбиваем текст на слова (в массив строк)
+
+            Console.WriteLine(Request);
+            Console.WriteLine("words num: " + textArray.Length);
+
             // Парсим строку запроса с использованием регулярных выражений
             // При этом отсекаем все переменные GET-запроса
             //Match ReqMatch = Regex.Match(Request, @"^\w+\s+([^\s\?]+)[^\s]*\s+HTTP/.*|");
@@ -72,7 +84,7 @@ namespace TCPserver
 
             // Приводим ее к изначальному виду, преобразуя экранированные символы
             // Например, "%20" -> " "
-            
+
             //RequestUri = Uri.UnescapeDataString(RequestUri);
 
             // Если в строке содержится двоеточие, передадим ошибку 400
@@ -152,8 +164,9 @@ namespace TCPserver
             */
             // Посылаем заголовки
             //string Headers = "HTTP/1.1 200 OK\nContent-Type: " + ContentType + "\nContent-Length: " + FS.Length + "\n\n";
-            string Headers = "hi bitch";
-            byte[] HeadersBuffer = Encoding.ASCII.GetBytes(Headers);
+            //string Headers = "hi bitch";
+            
+            byte[] HeadersBuffer = Encoding.ASCII.GetBytes(textArray.Length.ToString());
             Client.GetStream().Write(HeadersBuffer, 0, HeadersBuffer.Length);
             /*
             // Пока не достигнут конец файла
