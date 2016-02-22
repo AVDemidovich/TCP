@@ -203,14 +203,14 @@ namespace TCPserver
                 // с использованием пула потоков.
                 ThreadPool.QueueUserWorkItem(new WaitCallback(ClientThread), Listener.AcceptTcpClient());
 
-                /*
+                
                 // Принимаем нового клиента
                 TcpClient Client = Listener.AcceptTcpClient();
                 // Создаем поток
                 Thread Thread = new Thread(new ParameterizedThreadStart(ClientThread));
                 // И запускаем этот поток, передавая ему принятого клиента
                 Thread.Start(Client);
-                */
+                
             }
         }
 
