@@ -22,6 +22,9 @@ namespace TCPclient
                 byte[] byteMessage = Encoding.ASCII.GetBytes("hi . motherfucker!");
                 ns.Write(byteMessage, 0, byteMessage.Length);
 
+                byteMessage = Encoding.ASCII.GetBytes("/r/n/r/n");
+                ns.Write(byteMessage, 0, byteMessage.Length);
+
                 int bytesRead = ns.Read(bytes, 0, bytes.Length);
                 Console.WriteLine(Encoding.ASCII.GetString(bytes, 0, bytesRead));
 
