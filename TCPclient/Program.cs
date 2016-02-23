@@ -19,6 +19,7 @@ namespace TCPclient
                 NetworkStream ns = client.GetStream();
 
                 byte[] bytes = new byte[1024];
+                Console.WriteLine("Input:");
                 byte[] byteMessage = Encoding.ASCII.GetBytes(Console.ReadLine());
                 ns.Write(byteMessage, 0, byteMessage.Length);
 

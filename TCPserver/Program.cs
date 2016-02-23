@@ -36,6 +36,7 @@ namespace TCPserver
 
         public Server(int Port)
         {
+            IPAddress addr = IPAddress.Parse("192.168.1.103");
             Listener = new TcpListener(IPAddress.Any, Port); 
             Listener.Start();
             int i = 0;
