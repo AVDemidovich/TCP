@@ -19,20 +19,19 @@ namespace TCPclient
                 NetworkStream ns = client.GetStream();
 
                 byte[] bytes = new byte[1024];
-                byte[] byteMessage = Encoding.ASCII.GetBytes("hi motherfucker!");
+                byte[] byteMessage = Encoding.ASCII.GetBytes(Console.ReadLine());
                 ns.Write(byteMessage, 0, byteMessage.Length);
 
                 int bytesRead = ns.Read(bytes, 0, bytes.Length);
                 Console.WriteLine(Encoding.ASCII.GetString(bytes, 0, bytesRead));
 
                 client.Close();
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
-            Thread.Sleep(7000);
+            Thread.Sleep(10000);
             return 0;
         }
     }
