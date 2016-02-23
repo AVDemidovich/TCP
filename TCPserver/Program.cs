@@ -24,7 +24,7 @@ namespace TCPserver
                 // Либо обрываем прием данных сами, если длина строки Request превышает 4 килобайта
                 // Нам не нужно получать данные из POST-запроса (и т. п.), а обычный запрос
                 // по идее не должен быть больше 4 килобайт
-          //      break;
+                break;
                 if (Request.IndexOf("\r\n\r\n") >= 0 || Request.Length > 4096)
                 {
                     break;
@@ -56,8 +56,8 @@ namespace TCPserver
         public Server(int Port)
         {
             IPAddress ipaddress = IPAddress.Parse("192.168.0.103");
-            Listener = new TcpListener(ipaddress, Port); 
-            //Listener = new TcpListener(IPAddress.Any, Port); 
+        //    Listener = new TcpListener(ipaddress, Port); 
+            Listener = new TcpListener(IPAddress.Any, Port); 
             Listener.Start();
 
             while (true)
