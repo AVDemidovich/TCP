@@ -36,7 +36,6 @@ namespace TCPserver
 
         public Server(int Port)
         {
-            IPAddress addr = IPAddress.Parse("192.168.1.103");
             Listener = new TcpListener(IPAddress.Any, Port); 
             Listener.Start();
             int i = 0;
@@ -67,9 +66,6 @@ namespace TCPserver
 
         public static void Main(string[] args)
         {
-          //  int MaxThreadsCount = Environment.ProcessorCount * 4;
-          //  ThreadPool.SetMaxThreads(MaxThreadsCount, MaxThreadsCount);
-          //  ThreadPool.SetMinThreads(2, 2);
             new Server(9050);
         }
     }
