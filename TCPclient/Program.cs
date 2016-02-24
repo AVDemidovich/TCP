@@ -19,13 +19,21 @@ namespace TCPclient
                 NetworkStream ns = client.GetStream();
 
                 byte[] bytes = new byte[1024];
-                Console.WriteLine("Input:");
-                byte[] byteMessage = Encoding.ASCII.GetBytes(Console.ReadLine());
-                ns.Write(byteMessage, 0, byteMessage.Length);
+                for (int i = 0; i <= 100; i++)
+                {
+                    Console.WriteLine("Input:");
+                    string Request = "";
+                    Request = Console.ReadLine();
+                    byte[] byteMessage = Encoding.ASCII.GetBytes(Request);
+                    ns.Write(byteMessage, 0, byteMessage.Length);
 
-                int bytesRead = ns.Read(bytes, 0, bytes.Length);
-                Console.WriteLine(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-
+                    int bytesRead = ns.Read(bytes, 0, bytes.Length);
+                    Console.WriteLine(Encoding.ASCII.GetString(bytes, 0, bytesRead));
+                    if (Request == "exit")
+                    {
+                        break;
+                    }
+                }
                 client.Close();
             }
             catch (Exception e)
