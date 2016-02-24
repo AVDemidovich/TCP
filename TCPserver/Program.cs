@@ -13,19 +13,26 @@ namespace TCPserver
             string Request = "";
             byte[] Buffer = new byte[1024];
             int Count;
-            Count = Client.GetStream().Read(Buffer, 0, Buffer.Length);
-            Request += Encoding.ASCII.GetString(Buffer, 0, Count);    
-            Request = Request.Replace(",", " ");
-            Request = Request.Replace("  ", " ");
+            for (int i = 0; i <= 100; i++)
+            {
+                Count = Client.GetStream().Read(Buffer, 0, Buffer.Length);
 
-            string[] textArray = Request.Split(new char[] { ' ' });
+                Request = Encoding.ASCII.GetString(Buffer, 0, Count);
+                Request = Request.Replace(",", " ");
+                Request = Request.Replace("  ", " ");
 
-            Console.WriteLine(Request);
-            Console.WriteLine("words num: " + textArray.Length);
-                      
-            byte[] HeadersBuffer = Encoding.ASCII.GetBytes(textArray.Length.ToString());
-            Client.GetStream().Write(HeadersBuffer, 0, HeadersBuffer.Length);
-           
+                string[] textArray = Request.Split(new char[] { ' ' });
+
+                Console.WriteLine(Request);
+                Console.WriteLine("words num: " + textArray.Length);
+
+                byte[] HeadersBuffer = Encoding.ASCII.GetBytes(textArray.Length.ToString());
+                Client.GetStream().Write(HeadersBuffer, 0, HeadersBuffer.Length);
+                if (Request == "exit")
+                {
+                    break;
+                }
+            }
             Client.Close();
         }
     }
@@ -47,7 +54,6 @@ namespace TCPserver
                 Thread.Start(Client);
                 i++;
                 Thread.Sleep(1000);
-
             }
         }
 
