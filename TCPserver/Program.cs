@@ -72,6 +72,9 @@ namespace TCPserver
 
         public static void Main(string[] args)
         {
+            int MaxThreadsCount = Environment.ProcessorCount * 4;
+            ThreadPool.SetMaxThreads(MaxThreadsCount, MaxThreadsCount);
+            ThreadPool.SetMinThreads(2, 2);
             new Server(9050);
         }
     }
